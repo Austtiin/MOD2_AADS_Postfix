@@ -12,6 +12,8 @@
 
 package solution;
 
+import java.util.Scanner;
+
 public class menu {
     public void run() {
         System.out.println("Module 02 Project - Postfix Implementation in Java");
@@ -21,9 +23,11 @@ public class menu {
 
         // Create a new postfix object
         postfix p = new postfix();
+        // Create a new scanner object
+        Scanner scan = new Scanner(System.in);
 
         //learn expression from user
-        String expression = System.console().readLine();
+        String expression = scan.nextLine();
         //while the user does not enter "exit"
         while (!expression.equals("exit")) {
             //evaluate the expression with the postfix method

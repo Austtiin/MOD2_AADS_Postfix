@@ -14,6 +14,23 @@ package solution;
 
 public class menu {
     public void run() {
+        System.out.println("Module 02 Project - Postfix Implementation in Java");
+        System.out.println("Input a postfix expression to evaluate");
+        System.out.println("Example: 2 3 5 6 + * -");
+        System.out.println("Enter 'exit' to quit the program.");
+
+        // Create a new postfix object
+        postfix p = new postfix();
+
+        //learn expression from user
+        String expression = System.console().readLine();
+        //while the user does not enter "exit"
+        while (!expression.equals("exit")) {
+            //evaluate the expression with the postfix method
+            System.out.println("Result: " + p.postfix(expression));
+            //learn expression from user
+            expression = System.console().readLine();
+        }
 
     }
 }

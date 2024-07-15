@@ -38,6 +38,7 @@ public class postfix {
             //here we will look at the first character of the token
             //if it is a digit, we will push it onto the stack
             if (Character.isDigit(ticket.charAt(0))) {
+                //we need to convert the ticket to an integer before pushing it onto the stack
                 stack.push(Integer.parseInt(ticket));
             } else {
                 //now, if the token is an operator, we will pop the last two numbers from the stack

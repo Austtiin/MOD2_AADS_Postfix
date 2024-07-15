@@ -31,6 +31,11 @@ public class postfix {
 
         //we need to go through each of our 'tokens' in the expression in order to see what is what
         //we will do this by looking at the length of the expression and looping through
+        //we also need to watch for spaces, so we will use the length of the expression or get rid of spaces
+
+        //look for spaces and remove them
+        expression = expression.replaceAll("\\s", "");
+
         for (int i = 0; i < expression.length(); i++) {
             //get the current character, by looking at what is at that current location.
             char e = expression.charAt(i);

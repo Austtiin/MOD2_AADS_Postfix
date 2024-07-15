@@ -21,10 +21,10 @@ package solution;
 
 public class Main {
     public static void main(String[] args) {
-
         // Create a new menu object and run the program
         menu m = new menu();
         // Run the program "Menu"
         m.run();
     }
 }
+

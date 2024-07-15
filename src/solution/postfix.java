@@ -12,50 +12,55 @@
  */
 
 package solution;
-
 import java.util.Stack;
+
 public class postfix {
+
+    //call the evaluate method in th epostfix method
     public String postfix(String expression) {
+        //eval
+        evaluate(expression);
 
-        //create stack
-        Stack<Integer> stack = new Stack<>();
-        //Split string into stack and separate operators
-        split(expression, stack);
-        //combine the stack and operators to evaluate the expression
-
-        //evaluate the expression
-
-        //return the result
+        //return the expression
         return expression;
     }
 
-    public void split(String expression, Stack<Integer> stack) {
-        if (expression.contains(" ")) {
-            String[] splitExpression = expression.split(" ");
+    private void evaluate(String expression) {
+        //This is where we will evaluate the postfix expression
+        //Create a stack to hold the operands
+        Stack<Integer> stack = new Stack<Integer>();
 
-            for (String element : splitExpression) {
-                if (element.equals("+") || element.equals("-") || element.equals("*") || element.equals("/")) {
-                    int num2 = stack.pop();
-                    int num1 = stack.pop();
-                    switch (element) {
-                        case "+":
-                            stack.push(num1 + num2);
-                            break;
-                        case "-":
-                            stack.push(num1 - num2);
-                            break;
-                        case "*":
-                            stack.push(num1 * num2);
-                            break;
-                        case "/":
-                            stack.push(num1 / num2);
-                            break;
-                    }
-                } else {
-                    stack.push(Integer.parseInt(element));
+        //we need to go through each of our 'tokens' in the expression in order to see what is what
+        //we will do this by looking at the length of the expression and looping through
+        for (int i = 0; i < expression.length(); i++) {
+            //get the current character
+            char c = expression.charAt(i);
+
+            //We need to look at the character and determine if it is a digit or an operator
+            //if the character is a digit, we need to push it onto the stack
+            if (Character.isDigit(c)) {
+                stack.push(c - '0');
+            } else {
+                //if the character is an operator, we need to pop the last two operands off the stack
+                int x = stack.pop();
+                int y = stack.pop();
+
+                //perform the operation
+                switch (c) {
+                    case '+':
+                        stack.push(y + x);
+                        break;
+                    case '-':
+                        stack.push(y - x);
+                        break;
+                    case '*':
+                        stack.push(y * x);
+                        break;
+                    case '/':
+                        stack.push(y / x);
+                        break;
                 }
             }
-            System.out.println("Result: " + stack.peek());
         }
     }
 }

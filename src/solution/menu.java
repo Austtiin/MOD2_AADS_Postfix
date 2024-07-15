@@ -26,19 +26,16 @@ public class menu {
         // Create a new scanner object
         Scanner scan = new Scanner(System.in);
 
-        //learn expression from user
+        // Read expression from user
         String expression = scan.nextLine();
-        //while the user does not enter "exit"
+        // While the user does not enter "exit"
         while (!expression.equals("exit")) {
-            //evaluate the expression with the postfix method
+            // Evaluate the expression with the postfix method
             System.out.println("Result: " + p.postfix(expression));
-            //learn expression from user
-            expression = System.console().readLine();
+            // Read expression from user
+            expression = scan.nextLine();
         }
-        //if expression dosent equal exit, then we will close the scanner
-        //and leave the program
-        //close the scanner
+        // Close the scanner
         scan.close();
-        return;
     }
 }

@@ -16,63 +16,56 @@ import java.util.Stack;
 
 public class postfix {
 
-    //call the evaluate method in th epostfix method
+    //this method will evaluate the postfix expression
     public String postfix(String expression) {
-        //eval
-        evaluate(expression);
-        //return the expression as it is now evaluated / solved
-        return expression;
+        //first we will evaluate the expression
+        int result = evaluate(expression);
+        //then return the result as a string
+        return Integer.toString(result);
     }
 
-    private String evaluate(String expression) {
-        //This is where we will evaluate the postfix expression
-        //Create a stack to hold the operands
+    private int evaluate(String expression) {
+        //this method will evaluate the postfix expression
+        //Create a new stack object
         Stack<Integer> stack = new Stack<>();
 
-        //we need to go through each of our 'tokens' in the expression in order to see what is what
-        //we will do this by looking at the length of the expression and looping through
-        //we also need to watch for spaces, so we will use the length of the expression or get rid of spaces
+        //we will move through the expression by splitting it into tickets or tockenizing it
+        String[] tokens = expression.split(" ");
 
-        //look for spaces and remove them
-        expression = expression.replaceAll("\\s", "");
-
-        for (int i = 0; i < expression.length(); i++) {
-            //get the current character, by looking at what is at that current location.
-            char e = expression.charAt(i);
-
-            //We need to look at the character and determine if it is a digit or an operator
-            //if the character is a digit, we need to push it onto the stack
-            if (Character.isDigit(e)) {
-                stack.push(e - '0');
+        //loop through the tokens, using a for loop and looking at each token in the expression
+        //tickets are the individual parts of the expression
+        for (String ticket : tokens) {
+            //here we will look at the first character of the token
+            //if it is a digit, we will push it onto the stack
+            if (Character.isDigit(ticket.charAt(0))) {
+                stack.push(Integer.parseInt(ticket));
             } else {
-                //Now, if the char we are looking at is an operator,
-                // we need to 'pop' the last two digits off the stack because
-                // we need to perform an operation on them
+                //now, if the token is an operator, we will pop the last two numbers from the stack
+                //because we are evaluating a postfix expression, the last two numbers are the ones we need to evaluate
                 int x = stack.pop();
                 int y = stack.pop();
 
-                //perform the operation, we will just use a switch statement to
-                // determine what operation to perform.
-                //This is where we will perform the operation aswell
-                switch (e) {
-                    case '+':
+                //switch case to evaluate the expression
+                //live lecture reccomended using a switch case to evaluate the expression
+                switch (ticket) {
+                    case "+":
                         stack.push(y + x);
                         break;
-                    case '-':
+                    case "-":
                         stack.push(y - x);
                         break;
-                    case '*':
+                    case "*":
                         stack.push(y * x);
                         break;
-                    case '/':
+                    case "/":
                         stack.push(y / x);
                         break;
                 }
             }
         }
-        //return the stack as a string
-        //We only need to return the stack as a string because the stack will only have one element
-        //This element will be the solved expression
-        return stack.toString();
+        //return the result
+        //we return the last number in the stack because that is the result of the expression
+
+        return stack.pop();
     }
 }

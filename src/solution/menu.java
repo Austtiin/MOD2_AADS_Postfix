@@ -35,6 +35,10 @@ public class menu {
             //learn expression from user
             expression = System.console().readLine();
         }
-
+        //if expression dosent equal exit, then we will close the scanner
+        //and leave the program
+        //close the scanner
+        scan.close();
+        return;
     }
 }

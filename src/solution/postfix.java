@@ -24,10 +24,10 @@ public class postfix {
         return expression;
     }
 
-    private void evaluate(String expression) {
+    private String evaluate(String expression) {
         //This is where we will evaluate the postfix expression
         //Create a stack to hold the operands
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
 
         //we need to go through each of our 'tokens' in the expression in order to see what is what
         //we will do this by looking at the length of the expression and looping through
@@ -38,7 +38,7 @@ public class postfix {
             //We need to look at the character and determine if it is a digit or an operator
             //if the character is a digit, we need to push it onto the stack
             if (Character.isDigit(e)) {
-                stack.push(c - '0');
+                stack.push(e - '0');
             } else {
                 //Now, if the char we are looking at is an operator,
                 // we need to 'pop' the last two digits off the stack because
@@ -65,5 +65,9 @@ public class postfix {
                 }
             }
         }
+        //return the stack as a string
+        //We only need to return the stack as a string because the stack will only have one element
+        //This element will be the solved expression
+        return stack.toString();
     }
 }
